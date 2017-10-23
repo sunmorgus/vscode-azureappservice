@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from 'vscode';
-import { AzureAccountWrapper } from './azureAccountWrapper';
-import { WizardBase, WizardStep, QuickPickItemWithData } from './wizard';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
+import { WizardBase, WizardStep, QuickPickItemWithData } from 'vscode-azureappservice';
 import { SubscriptionModels } from 'azure-arm-resource';
 import WebSiteManagementClient = require('azure-arm-website');
 import { DeploymentSlotNode } from './explorer/deploymentSlotNode';
 import { DeploymentSlotsNode } from './explorer/deploymentSlotsNode';
-import { UserCancelledError } from './errors';
+import { UserCancelledError } from 'vscode-azureappservice';
 
 export class DeploymentSlotSwapper extends WizardBase {
     constructor(output: vscode.OutputChannel, readonly azureAccount: AzureAccountWrapper, readonly slot: DeploymentSlotNode) {

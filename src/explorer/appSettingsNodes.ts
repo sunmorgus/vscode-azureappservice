@@ -8,7 +8,7 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 import * as util from '../util';
 import * as opn from 'opn';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import { NodeBase } from './nodeBase';
 import { AppServiceDataProvider } from './appServiceExplorer';
 import { SubscriptionModels } from 'azure-arm-resource';

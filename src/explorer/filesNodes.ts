@@ -8,7 +8,7 @@ import { NodeBase } from './nodeBase';
 import { AppServiceDataProvider } from './appServiceExplorer';
 import { SubscriptionModels } from 'azure-arm-resource';
 import { TreeItem, TreeItemCollapsibleState } from 'vscode';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import * as path from 'path';
 import { KuduClient, kuduFile } from '../kuduClient';
 import * as util from '../util';

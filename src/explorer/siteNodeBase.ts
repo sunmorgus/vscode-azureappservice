@@ -11,10 +11,11 @@ import { NodeBase } from './nodeBase';
 import { AppServiceDataProvider } from './appServiceExplorer';
 import { SubscriptionModels } from 'azure-arm-resource';
 import { ExtensionContext, OutputChannel, window, workspace } from 'vscode';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import { KuduClient } from '../kuduClient';
 import { Request } from 'request';
-import { UserCancelledError, GitNotInstalledError, LocalGitDeployError } from '../errors';
+import { GitNotInstalledError, LocalGitDeployError } from '../errors';
+import { UserCancelledError } from 'vscode-azureappservice';
 import { SiteWrapper } from 'vscode-azureappservice';
 
 export class SiteNodeBase extends NodeBase {

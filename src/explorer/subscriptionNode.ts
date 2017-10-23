@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { TreeItem, TreeItemCollapsibleState } from 'vscode';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import { SubscriptionModels } from 'azure-arm-resource';
 import { AppServiceDataProvider } from './appServiceExplorer';
 import { NodeBase } from './nodeBase';

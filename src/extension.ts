@@ -14,11 +14,12 @@ import { AppServiceNode } from './explorer/appServiceNode';
 import { AppSettingsNode, AppSettingNode } from './explorer/appSettingsNodes';
 import { DeploymentSlotNode } from './explorer/deploymentSlotNode';
 import { SubscriptionNode } from './explorer/subscriptionNode';
-import { AzureAccountWrapper } from './azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import { WebAppCreator } from './webAppCreator2';
 import { WebAppZipPublisher } from './webAppZipPublisher';
 import { Reporter } from './telemetry/reporter';
-import { UserCancelledError, GitNotInstalledError, LocalGitDeployError, WizardFailedError } from './errors';
+import { GitNotInstalledError, LocalGitDeployError } from './errors';
+import { UserCancelledError, WizardFailedError } from 'vscode-azureappservice';
 import { ErrorData } from './ErrorData';
 
 export function activate(context: vscode.ExtensionContext) {

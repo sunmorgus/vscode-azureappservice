@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { TreeDataProvider, TreeItemCollapsibleState, TreeItem, EventEmitter, Event } from 'vscode';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 import { SubscriptionNode } from './subscriptionNode';
 import { NodeBase } from './nodeBase';
-import * as util from '../util';
+import { uiUtils } from 'vscode-azureappservice';
 
 export class AppServiceDataProvider implements TreeDataProvider<NodeBase> {
     private readonly _azureAccount;
@@ -18,7 +18,6 @@ export class AppServiceDataProvider implements TreeDataProvider<NodeBase> {
         this._azureAccount = azureAccount;
         this._azureAccount.registerStatusChangedListener(this.onSubscriptionChanged, this);
         this._azureAccount.registerFiltersChangedListener(this.onSubscriptionChanged, this);
-
     }
 
     refresh(element?: NodeBase): void {
@@ -78,7 +77,7 @@ export class NotSignedInNode extends NodeBase {
             label: this.label,
             command: {
                 title: this.label,
-                command: util.getSignInCommandString()
+                command: uiUtils.getSignInCommandString()
             },
             collapsibleState: TreeItemCollapsibleState.None
         }

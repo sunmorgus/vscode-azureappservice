@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as vscode from 'vscode';
-import { AzureAccountWrapper } from './azureAccountWrapper';
-import { WizardBase, WizardStep, SubscriptionStepBase, QuickPickItemWithData } from './wizard';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
+import { WizardBase, WizardStep, SubscriptionStepBase, QuickPickItemWithData } from 'vscode-azureappservice';
 import { WebAppCreator } from './webAppCreator2';
 import { SubscriptionModels } from 'azure-arm-resource';
 import WebSiteManagementClient = require('azure-arm-website');
 import * as WebSiteModels from '../node_modules/azure-arm-website/lib/models';
+import { uiUtils } from 'vscode-azureappservice';
 import * as util from './util';
 import { SiteWrapper } from 'vscode-azureappservice';
 
@@ -105,7 +106,7 @@ class WebAppStep extends WizardStep {
 
         const subscription = this.getSelectedSubscription();
         const websiteClient = new WebSiteManagementClient(this.azureAccount.getCredentialByTenantId(subscription.tenantId), subscription.subscriptionId);
-        const webAppsTask = util.listAll(websiteClient.webApps, websiteClient.webApps.list()).then(webApps => {
+        const webAppsTask = uiUtils.listAll(websiteClient.webApps, websiteClient.webApps.list()).then(webApps => {
             const quickPickItems: QuickPickItemWithData<WebSiteModels.Site>[] = [];
             quickPickItems.push({
                 persistenceId: "$new",

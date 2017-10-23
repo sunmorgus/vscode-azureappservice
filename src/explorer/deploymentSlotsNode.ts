@@ -13,7 +13,7 @@ import { SubscriptionModels } from 'azure-arm-resource';
 import WebSiteManagementClient = require('azure-arm-website');
 import { TreeItem, TreeItemCollapsibleState } from 'vscode';
 import { DeploymentSlotNode } from './deploymentSlotNode';
-import { AzureAccountWrapper } from '../azureAccountWrapper';
+import { AzureAccountWrapper } from 'vscode-azureappservice';
 
 
 
