@@ -49,6 +49,7 @@
         "onCommand:appSettings.Delete",
         "onCommand:diagnostics.OpenLogStream",
         "onCommand:diagnostics.StopLogStream",
+        "onCommand:diagnostics.startRemoteDebug",
         "onCommand:deploymentSlots.CreateSlot",
         "onView:azureAppService"
     ],
@@ -178,6 +179,11 @@
             {
                 "command": "deploymentSlots.CreateSlot",
                 "title": "Create New Deployment Slot",
+                "category": "Azure App Service"
+            },
+            {
+                "command": "diagnostics.startRemoteDebug",
+                "title": "Start remote debugging on Azure",
                 "category": "Azure App Service"
             },
             {
@@ -338,6 +344,11 @@
                 {
                     "command": "diagnostics.StartLogPointsSession",
                     "when": "config.appService.logpoints == true && view == azureAppService && viewItem == appService",
+                    "group": "4_appServiceDiagnosticsCommands@4"
+                },
+                {
+                    "command": "diagnostics.startRemoteDebug",
+                    "when": "view == azureAppService && viewItem == appService",
                     "group": "4_appServiceDiagnosticsCommands@3"
                 },
                 {
@@ -629,6 +640,7 @@
         "azure-arm-website": "^1.0.0-preview",
         "fs-extra": "^4.0.2",
         "opn": "^5.1.0",
+        "portfinder": "^1.0.13",
         "request": "^2.83.0",
         "request-promise": "^4.2.2",
         "vscode-azureappservice": "~0.13.1",
@@ -636,7 +648,8 @@
         "vscode-azurekudu": "~0.1.6",
         "vscode-debugadapter": "^1.24.0",
         "vscode-debugprotocol": "^1.24.0",
-        "vscode-extension-telemetry": "^0.0.15"
+        "vscode-extension-telemetry": "^0.0.15",
+        "websocket": "^1.0.25"
     },
     "extensionDependencies": [
         "ms-vscode.azure-account"

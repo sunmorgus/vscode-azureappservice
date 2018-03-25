@@ -9,6 +9,7 @@ import * as vscode from 'vscode';
 import { AppSettingsTreeItem, AppSettingTreeItem, editScmType } from 'vscode-azureappservice';
 import { AzureActionHandler, AzureTreeDataProvider, AzureUserInput, IActionContext, IAzureNode, IAzureParentNode, IAzureUserInput, parseError } from 'vscode-azureextensionui';
 import TelemetryReporter from 'vscode-extension-telemetry';
+import { startRemoteDebug } from './commands/startRemoteDebug';
 import { swapSlots } from './commands/swapSlots';
 import { extensionPrefix } from './constants';
 import { LogPointsManager } from './diagnostics/LogPointsManager';
@@ -297,6 +298,10 @@ export function activate(context: vscode.ExtensionContext): void {
             const wizard = new LogPointsSessionWizard(logPointsManager, context, outputChannel, node, node.treeItem.client, reporter);
             await wizard.run(this.properties);
         }
+    });
+
+    actionHandler.registerCommand('diagnostics.startRemoteDebug', async (node?: IAzureNode<SiteTreeItem>) => {
+        await startRemoteDebug(tree, node, outputChannel);
     });
 
     actionHandler.registerCommand('diagnostics.LogPoints.Toggle', async (uri: vscode.Uri) => {
