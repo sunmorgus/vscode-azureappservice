@@ -160,11 +160,11 @@ export function activate(context: vscode.ExtensionContext): void {
     actionHandler.registerCommand('appService.SetDeployPath', async (target?: vscode.Uri | undefined) => {
         if (target instanceof vscode.Uri) {
             const fsPath: string = path.relative(vscode.workspace.getWorkspaceFolder(target).uri.fsPath, target.fsPath);
-            await vscode.workspace.getConfiguration(extensionPrefix).update(configurationSettings.deploySubpath, fsPath).then(error => {
-                if (!error) {
-                    vscode.window.showInformationMessage(`Successfully set default deployment path to ${fsPath}`);
-                }
-            });
+            const configuration = await vscode.workspace.getConfiguration(extensionPrefix, target);
+            if (configuration) {
+                await configuration.update(configurationSettings.deploySubpath, fsPath, vscode.ConfigurationTarget.WorkspaceFolder);
+                await vscode.window.showInformationMessage(`Successfully set default deployment path to ${fsPath}`);
+            }
         }
     });
     actionHandler.registerCommand('appService.Deploy', async function (this: IActionContext, target?: vscode.Uri | IAzureNode<WebAppTreeItem> | undefined): Promise<void> {
