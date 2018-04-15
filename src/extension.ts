@@ -5,12 +5,13 @@
 
 'use strict';
 
+import * as path from 'path';
 import * as vscode from 'vscode';
 import { AppSettingsTreeItem, AppSettingTreeItem, editScmType } from 'vscode-azureappservice';
 import { AzureActionHandler, AzureTreeDataProvider, AzureUserInput, IActionContext, IAzureNode, IAzureParentNode, IAzureUserInput, parseError } from 'vscode-azureextensionui';
 import TelemetryReporter from 'vscode-extension-telemetry';
 import { swapSlots } from './commands/swapSlots';
-import { extensionPrefix } from './constants';
+import { configurationSettings, extensionPrefix } from './constants';
 import { LogPointsManager } from './diagnostics/LogPointsManager';
 import { LogPointsSessionWizard } from './diagnostics/LogPointsSessionWizard';
 import { RemoteScriptDocumentProvider, RemoteScriptSchema } from './diagnostics/remoteScriptDocumentProvider';
@@ -154,6 +155,16 @@ export function activate(context: vscode.ExtensionContext): void {
             await createdApp.treeItem.deploy(node, fsPath, outputChannel, ui, reporter, extensionPrefix, false, this.properties);
         } else {
             this.properties[deployingToWebApp] = 'false';
+        }
+    });
+    actionHandler.registerCommand('appService.SetDeployPath', async (target?: vscode.Uri | undefined) => {
+        if (target instanceof vscode.Uri) {
+            const fsPath: string = path.relative(vscode.workspace.getWorkspaceFolder(target).uri.fsPath, target.fsPath);
+            await vscode.workspace.getConfiguration(extensionPrefix).update(configurationSettings.deploySubpath, fsPath).then(error => {
+                if (!error) {
+                    vscode.window.showInformationMessage(`Successfully set default deployment path to ${fsPath}`);
+                }
+            });
         }
     });
     actionHandler.registerCommand('appService.Deploy', async function (this: IActionContext, target?: vscode.Uri | IAzureNode<WebAppTreeItem> | undefined): Promise<void> {

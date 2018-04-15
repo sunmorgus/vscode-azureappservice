@@ -39,6 +39,7 @@
         "onCommand:appService.Restart",
         "onCommand:appService.Delete",
         "onCommand:appService.Deploy",
+        "onCommand:appService.SetDeployPath",
         "onCommand:appService.ConfigureDeploymentSource",
         "onCommand:appService.DeploymentScript",
         "onCommand:appService.OpenVSTSCD",
@@ -80,6 +81,11 @@
                     "light": "resources/light/Deploy.svg",
                     "dark": "resources/dark/Deploy.svg"
                 }
+            },
+            {
+                "command": "appService.SetDeployPath",
+                "title": "Set as Deployment Path",
+                "category": "Azure App Service"
             },
             {
                 "command": "appService.Refresh",
@@ -479,7 +485,12 @@
                 {
                     "command": "appService.Deploy",
                     "when": "explorerResourceIsFolder == true",
-                    "group": "zzz_@appServiceDeployCommands"
+                    "group": "zzz_@appServiceDeployCommands@1"
+                },
+                {
+                    "command": "appService.SetDeployPath",
+                    "when": "explorerResourceIsFolder == true",
+                    "group": "zzz_@appServiceDeployCommands@2"
                 }
             ],
             "editor/context": [
